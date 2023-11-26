@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\GoogleController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +18,50 @@ use App\Http\Controllers\GoogleController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-});
-
-Route::get('/googleAutocomplete', [GoogleController::class, 'index'])->name('googleAutocomplete');;
+    return redirect('home');
+})->middleware('auth');
 
 Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name ('home');
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name ('home');
+
+
+
+
+
+
+//administrator
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'student'], function() {
-        Route::get('/list', [StudentController::class, 'studentlist'])->name('student.list');
-        Route::get('/add', [StudentController::class, 'student_add'])->name('student.add');
-        Route::get('/{id}/edit', [StudentController::class, 'editStudent'])->name('editStudent');
+       
+    Route::get('/add', [StudentController::class, 'student_add'])->name('student.add');
+       
 
-        
-        Route::post('/remove', [StudentController::class, 'x_removeStudentByID'])->name('x_removeStudentByID');
     });
 
 });
+
+
+
+//teacher or user
+Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function () {
+
+    Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance');;
+    Route::get('/list', [StudentController::class, 'studentlist'])->name('student.list');
+    Route::get('/{id}/edit', [StudentController::class, 'editStudent'])->name('editStudent');
+    Route::post('/remove', [StudentController::class, 'x_removeStudentByID'])->name('x_removeStudentByID');
+});
+
+
+
+
+
+
+//Admin-User
+Route::group(['prefix' => 'profile', 'middleware' => ['auth']], function () {
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');;
+});
+
+

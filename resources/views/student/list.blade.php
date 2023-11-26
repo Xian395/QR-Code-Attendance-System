@@ -3,7 +3,7 @@
 @section('content')
 <div class="pagetitle">
     <br>
-      <h2>MasterList</h2>
+      <h2>Student List</h2>
        
     </div><!-- End Page Title -->
 
@@ -36,7 +36,7 @@
                             <td>{{ $c->ProgramID }}</td>
                             <td>{{ $c->CourseID }}</td>
                             <td>
-                                <a href="{{ route('editStudent', [encrypt($c->id)]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('editStudent', [encrypt($c->id)]) }}" class="btn btn-success">Edit</a>
                                 <a onclick="confirmDelete('{{ encrypt($c->id) }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

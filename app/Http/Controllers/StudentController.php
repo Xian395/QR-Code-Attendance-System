@@ -10,7 +10,7 @@ class StudentController extends Controller
     public function studentlist(Request $request){
         $list = Students::get();
         return view('student.list', compact('list'));
-    }
+    }  
     public function student_add(Request $request){
         return view('student.add');
     }

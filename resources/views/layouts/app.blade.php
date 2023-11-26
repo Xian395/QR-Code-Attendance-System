@@ -1,18 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}">
   <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}} ">
   <title>
-    Soft UI Dashboard by Creative Tim
+    Attendance Management
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -36,11 +21,11 @@
   <link id="pagestyle" href="{{asset('css/soft-ui-dashboard.css')}}" rel="stylesheet" />
 </head>
 <body>
-    <!-- <div id="app"> -->
-        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+   <div id="app">
+      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <!-- {{ config('app.name', 'Laravel') }} -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -48,7 +33,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                    
-                    <ul class="navbar-nav me-auto">
+
+                    
+
+
+
+
+
+
+
+
+
+
+                   
+                   <!--  <ul class="navbar-nav me-auto">
 
                     </ul>
 
@@ -86,10 +84,12 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
-        </nav> -->
+        </nav>
+
+        
 
         <main class="py-4">
             @yield('content')

@@ -1,15 +1,15 @@
 
-@include('layouts.styles')
+@include('layouts.all-blade.styles')
 
-@include('layouts.sidebar')
+@include('layouts.all-blade.sidebar')
   <main id="main" class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg" >
     
 @yield('content')
-@include('layouts.footer')
+@include('layouts.all-blade.footer')
 
  </main>
 
 
-@include('layouts.rightsidebar')
+@include('layouts.all-blade.rightsidebar')
 
-@include('layouts.scripts')
+@include('layouts.all-blade.scripts')

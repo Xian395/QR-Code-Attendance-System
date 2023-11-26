@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GoogleController extends Controller
+class ProfileController extends Controller
 {
+    
     public function index()
     {
-        return view('googleAutocomplete');
+        return view('profile');
     }
 }
