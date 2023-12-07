@@ -20,8 +20,7 @@
                             <th>Student Name</th>
                             <th>Date of birth</th>
                             <th>Addres</th>
-                            <th>Program</th>
-                            <th>Cousre</th>
+                            <th>QR CODE</th>    
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -33,8 +32,7 @@
                             <td>{{ $c->FirstName . ' '.$c->LastName  }}</td>
                             <td>{{ date('M. d, Y', strtotime($c->DateofBirth)) }}</td>
                             <td>{{ $c->Address }}</td>
-                            <td>{{ $c->ProgramID }}</td>
-                            <td>{{ $c->CourseID }}</td>
+                            <td>{!!  DNS2D::getBarcodeHTML(" $c->qrcodes", 'QRCODE')!!}</td>                       
                             <td>
                                 <a href="{{ route('editStudent', [encrypt($c->id)]) }}" class="btn btn-success">Edit</a>
                                 <a onclick="confirmDelete('{{ encrypt($c->id) }}')" class="btn btn-danger">Delete</a>

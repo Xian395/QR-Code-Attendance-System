@@ -16,8 +16,9 @@ class AddStudent extends Component
     public $Suffix;
     public $DateofBirth;
     public $Address;
-
     public $StudentID;
+
+    public $qrcodes;
 
     public function mount(){
         $data = Students::find($this->StudentID);
@@ -77,7 +78,7 @@ class AddStudent extends Component
                     $b->LastName = $this->LastName;
                     $b->Suffix = $this->Suffix;
                     $b->DateofBirth = $this->DateofBirth; 
-                    $b->Address = $this->Address;
+                    $b->Address = $this->Address;             
                     $b->save();
     
                     if($b){
@@ -87,5 +88,26 @@ class AddStudent extends Component
                     $this->alert('error', $this->FirstName.' '.$this->LastName .' is already exists', ['position' => 'center', 'toast' => false]);
                     };
         }
+    }
+
+    public function Generate($StudentID){
+
+        $studentid = $StudentID;
+
+        $studentcode = Str::slug($studentid);
+
+        while ($this->studentCodeExists($studentcode)) {
+          
+            $studentcode .= '  ' . Str::random(3);
+        }
+    
+        $this->qrcodes = $studentcode;
+        Students::create($StudentID->all());
+
+        return redirect()->route('student.list');
+    }
+
+    public function studentCodeExists($qrcodes){
+        return Students::whereProductCode($qrcodes)->exists();
     }
 }

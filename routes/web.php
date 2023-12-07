@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AddController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
@@ -27,16 +28,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-
-
-
 //administrator
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'student'], function() {
        
-    Route::get('/add', [StudentController::class, 'student_add'])->name('student.add');
-       
+    Route::get('/add', [StudentController::class, 'student_add',])->name('student.add');
+    Route::post('/add',[StudentController::class,'store']);
+    Route::get('/list', [StudentController::class, 'studentlist'])->name('student.list');
+    Route::get('/{id}/edit', [StudentController::class, 'editStudent'])->name('editStudent');
+    Route::post('/remove', [StudentController::class, 'x_removeStudentByID'])->name('x_removeStudentByID');
 
     });
 
@@ -48,12 +49,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function () {
 
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance');;
-    Route::get('/list', [StudentController::class, 'studentlist'])->name('student.list');
-    Route::get('/{id}/edit', [StudentController::class, 'editStudent'])->name('editStudent');
-    Route::post('/remove', [StudentController::class, 'x_removeStudentByID'])->name('x_removeStudentByID');
+  
 });
-
-
 
 
 
